@@ -29,6 +29,7 @@ public class cyclically_rotate {
         System.out.print(i+" ");
        }
        System.out.println("Successfully done ");
+       System.out.println();
     }
     
 
