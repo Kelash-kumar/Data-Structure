@@ -1,5 +1,9 @@
 package Array_practices;
 
+import java.util.Scanner;
+
+import javax.sound.midi.SysexMessage;
+
 /**QUESTION:
  * Given an array, cyclically rotate the array clockwise by one. 
 
@@ -18,6 +22,9 @@ Output: arr[] = {5, 1, 2, 3, 4}
   */
 public class cyclically_rotate {
     public static void main(String[] args) {
+
+Scanner sc=new Scanner(System.in);
+
         int[] arr={1,2,3,4,5};
         int x = arr[arr.length-1];
         for(int i=arr.length-1;i>0;i--){
