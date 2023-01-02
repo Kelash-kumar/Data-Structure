@@ -12,11 +12,11 @@ while(startposition<=endposition){
 if(midposition==element){
 return midposition;
 }
-else if(midposition>element){
-    endposition=midposition-1;
+else if(arr[midposition]<element){
+    startposition=midposition+1;
 }
 else{
-    startposition=midposition+1;
+    endposition=midposition-1;
 }
 }
 return -1;
