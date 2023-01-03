@@ -1,6 +1,6 @@
 package Linked_List;
 
-import java.net.Inet4Address;
+import javax.swing.text.AbstractDocument.BranchElement;
 
 public class linkedList {
     Node head;
@@ -12,6 +12,10 @@ public class linkedList {
         Node(String data) {
             this.data = data;
             this.next = null; // iniatially it create null list
+        }
+        Node(String data,Node next) {
+            this.data = data;
+            this.next = next; // iniatially it create null list
         }
     }
 
@@ -38,7 +42,7 @@ public class linkedList {
             head = newnode;
             return;
         }
-
+    
         // traverse the node;
         Node CurrentNode = head; // assign the value head to a node variable;
         while (CurrentNode.next != null) {
@@ -47,13 +51,39 @@ public class linkedList {
         CurrentNode.next = newnode;
     }
 
+        //insert at specific poisition:
+    public void insertion(String data,int index){
+        if(head==null){
+            head=new Node(data);
+        return;
+        }
+
+        int counter=1;
+        Node p=head;
+        while(p.next!=null){
+           if(index==1){
+            addAtFirst(data);
+            break;
+           }
+          else if(counter==index-1){
+                p.next=new Node(data,p.next);
+                return;
+            }
+
+            p=p.next;
+            counter++;
+        }
+
+       
+
+    }
     // print list ;
     public void PrintList() {
         if (head == null) {
             System.out.println("list is empty");
             return;
         }
-        Node currentNode = head;
+        Node currentNode = head; 
         while (currentNode != null) {
             System.out.print(currentNode.data + " -> ");
             currentNode = currentNode.next;
@@ -128,7 +158,10 @@ public class linkedList {
         list.PrintList();
         // list.deleteAtFirst();
         // list.deleteAnyValue(" linked list");
-        list.deleteAtIndex(3);
+        // list.deleteAtIndex(3);
+        list.insertion("last", 6);
+        // list.insertion("singly", 4);
+        // list.insertion("kelash", 1);
         list.PrintList();
 
         // System.out.println();
