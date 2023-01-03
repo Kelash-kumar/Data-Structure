@@ -1,5 +1,7 @@
 package Linked_List;
 
+import java.net.Inet4Address;
+
 public class linkedList {
     Node head;
 
@@ -87,19 +89,52 @@ public class linkedList {
         secondlast.next = null;
     }
 
+    public void deleteAnyValue(String data){
+       Node p=head;
+
+       while(p.next!=null){
+           if(p.next.data.equals(data)){
+        p.next=p.next.next;
+        return;
+           }
+           p=p.next;
+       }
+    }
+    public void deleteAtIndex(int index){
+        Node temp=head;
+        int count=1;
+        if(head==null){
+            System.out.println("its Epmty");
+            return;
+        }
+
+        while(temp.next!=null){
+            if(count==index-1){
+                temp.next=temp.next.next;
+                return;
+            }
+            temp=temp.next;
+            count++;
+        }
+    }
+
     public static void main(String[] args) {
         linkedList list = new linkedList();
-        list.PrintList();// list is empty;
+        // list.PrintList();// list is empty;
         list.addAtFirst(" a");
         list.addAtFirst(" is");
         list.addAtLast(" linked list");
         list.addAtFirst(" This");
         list.PrintList();
-        list.deleteAtFirst();
-        System.out.println();
+        // list.deleteAtFirst();
+        // list.deleteAnyValue(" linked list");
+        list.deleteAtIndex(3);
         list.PrintList();
-        list.deleteAtLast();
-        list.PrintList();
+
+        // System.out.println();
+        // list.PrintList();
+        // list.deleteAtLast();
+        // list.PrintList();
 
     }
 }
