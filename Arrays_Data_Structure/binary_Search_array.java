@@ -3,6 +3,7 @@ package Arrays_Data_Structure;
 import java.util.Scanner;
 
 public class binary_Search_array {
+    
         public static int binarySearch(int[] arr,int n,int element){
 int startposition=0;
 int endposition=n;
