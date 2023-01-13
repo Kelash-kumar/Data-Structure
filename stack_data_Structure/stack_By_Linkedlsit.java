@@ -66,4 +66,4 @@ public class stack_By_Linkedlsit {
             s.pop();
         }
     }
-}
+} 
