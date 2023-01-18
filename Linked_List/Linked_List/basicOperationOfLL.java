@@ -1,8 +1,9 @@
 package Linked_List;
 
- class linkedList {
+class linkedList {
     Node head;
-    private  int size=0;
+    private int size = 0;
+
     class Node {
         int data;// pointing the data of head
         Node next; // poinnting the next elemet of head
@@ -17,13 +18,16 @@ package Linked_List;
             this.next = next; // iniatially it create null list
         }
     }
-public int sizzeOfList(){
-    while(head!=null){
-        size++;
-head=head.next;
+
+    public int sizzeOfList() {
+        Node temp = head;
+        while (temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        return size;     
     }
-    return size;
-}
+
     // Add operation in linked list;
     // two type
     // i) add at first
@@ -123,7 +127,7 @@ head=head.next;
         Node p = head;
 
         while (p.next != null) {
-            if (p.next.data==data) {
+            if (p.next.data == data) {
                 p.next = p.next.next;
                 return;
             }
@@ -152,94 +156,111 @@ head=head.next;
             temp.next = temp.next.next;
         }
     }
-public boolean compareEqualLists(Node list1,Node list2){
 
-Node p=list1;
-Node q=list2;
-while(p!=null && q!=null){
-    if(p.data==q.data){
-    
+    public void middleElement() {
+        if (head == null) {
+            System.out.println("List is empty ");
+            return;
+        }
+
+        Node pnext = head;
+        int n = sizzeOfList();
+        int middle_Element = n / 2;
+        while (middle_Element != 0) {
+            pnext = pnext.next;
+            middle_Element--;
+        }
+        System.out.println("Middle element is = " + pnext.data);
+
     }
-    p=p.next;
-    q=q.next;
-}
 
+    public boolean compareEqualLists( linkedList list2) {
 
+      if(this.head==null || list2.head==null)return false;
 
-    return false;
-}
-   
-public Node reverse_list(){
-    Node prev = null;
-    Node current = head;
-    Node next = null;
-    while (current != null) {
-        next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
+      Node p=this.head;
+      Node q=list2.head;
+      while(p!=null && q!=null){
+        if(p.data!=q.data)return false;
+        p=p.next;
+        q=q.next;
+      }
+        return true;
     }
-    head = prev;
-    return head;
-  }
+
+    public Node reverse_list() {
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+        return head;
+    }
+
 }
+
 public class basicOperationOfLL {
     public static void main(String[] args) {
-       
+
         linkedList list = new linkedList();
-        //adding at first of node list
+        // adding at first of node list
         list.addAtFirst(5);
-    list.addAtFirst(4);
-    list.addAtFirst(3);
-    list.addAtFirst(2);
-    list.addAtFirst(1);
-    //adding to the last of node list;
-    list.addAtLast(6);
-    list.addAtLast(7);
-    list.addAtLast(8);
-    list.addAtLast(9);
-    list.addAtLast(10);
-    list.addAtLast(12);
-    list.addAtLast(15);
-    //adding at the given position:
-    list.insertion(11, 10);
-    list.insertion(13, 12);
-    list.insertion(14, 13);
-    System.out.println("calling the list \n");
-    list.PrintList();
-    System.out.println("calling after insertion\n");
-    list.addAtFirst(0);
-    list.addAtLast(312);
-    list.insertion(123, 9);
-    list.insertion(1233, 12);
-    
-    list.PrintList();
-    System.out.println("\nnow we will delete these unstructred element in list to make is sorted like 0,123,312 ");
-    list.deleteAtIndex(9);
-    list.deleteAtFirst(); 
-    list.deleteAtLast();
-    list.deleteAnyValue(1233);
-    list.PrintList();
-    System.out.println("\n now make in reverse list ");
-    list.reverse_list();
-    list.PrintList();
-    System.out.println(list.sizzeOfList());
+        list.addAtFirst(4);
+        list.addAtFirst(3);
+        list.addAtFirst(2);
+        list.addAtFirst(1);
+        // adding to the last of node list;
+        list.addAtLast(6);
+        list.addAtLast(7);
+        list.addAtLast(8);
+        list.addAtLast(9);
+        list.addAtLast(10);
+        list.addAtLast(12);
+        list.addAtLast(15);
+        // adding at the given position:
+        list.insertion(11, 10);
+        list.insertion(13, 12);
+        list.insertion(14, 13);
+        System.out.println("calling the list \n");
+        list.PrintList();
+        list.middleElement();
+        System.out.println("calling after insertion\n");
+        list.addAtFirst(0);
+        list.addAtLast(312);
+        list.insertion(123, 9);
+        list.insertion(1233, 12);
 
-    
-       
-       linkedList list1=new linkedList();
-       linkedList list2=new linkedList();
-list1.addAtFirst(1);
-list1.addAtFirst(2);
-list1.addAtFirst(14);
-list2.addAtFirst(15);
+        list.PrintList();
+        System.out.println("\nnow we will delete these unstructred element in list to make is sorted like 0,123,312 ");
+        list.deleteAtIndex(9);
+        list.deleteAtFirst();
+        list.deleteAtLast();
+        list.deleteAnyValue(1233);
+        list.PrintList();
+        System.out.println("\n now make in reverse list ");
+        list.reverse_list();
+        list.PrintList();
+        System.out.println(list.sizzeOfList());
 
-list2.addAtFirst(1);
-list2.addAtFirst(2);
-list2.addAtFirst(14);
-list2.addAtFirst(15);
-       
-       
-    
+        linkedList list1 = new linkedList();
+        linkedList list2 = new linkedList();
+        list1.addAtFirst(1);
+        list1.addAtFirst(2);
+        list1.addAtFirst(14);
+        list1.addAtFirst(15);
+        System.out.println(list1.sizzeOfList());
+        list2.addAtFirst(1);
+        list2.addAtFirst(2);
+        list2.addAtFirst(14);
+        list2.addAtFirst(15);
+
+System.out.println("comparsion of lists => "+list1.compareEqualLists(list2));
+list1.PrintList();
+list2.PrintList();
     }
 }
