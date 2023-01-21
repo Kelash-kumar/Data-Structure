@@ -1,5 +1,7 @@
 package stack_data_Structure;
 
+import javax.xml.transform.Source;
+
 public class Stack_In_Array {
     private int[] arr; // array which stors the ele;
     private int Top = -1;
@@ -20,7 +22,9 @@ public class Stack_In_Array {
     public void push(int element) {
        if(isFull())
        {
+        // System.out.println("stack is overfellow");
         resize();
+        
     }
 
                arr[++Top] = element;
@@ -42,6 +46,7 @@ public class Stack_In_Array {
         }
         return arr[Top];
     }
+
     public void traverse_Stack(){
         while(Top!=-1){
           System.out.println(  peek());
@@ -57,18 +62,15 @@ public class Stack_In_Array {
 
     public static void main(String[] args) {
         Stack_In_Array s = new Stack_In_Array(5);
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.push(4);
-        s.push(5);
-        s.push(6);
-        s.push(7);
-        s.push(8);
-        s.push(9);
         s.push(10);
-        // s.pop();
-        s.traverse_Stack();
-        // System.out.println(s.peek());
+        s.push(20);
+        s.push(30);
+        s.push(40);
+        s.push(50);
+        s.push(60);
+        System.out.println(s.peek());
+        System.out.println(s.pop());
+        System.out.println(s.pop());
+      
     }
 }

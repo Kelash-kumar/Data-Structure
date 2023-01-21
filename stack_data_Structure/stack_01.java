@@ -31,7 +31,7 @@ interface stack {
 
     public void copyStack(stack fruit2);
 
-    public void reverseStack();
+    public void reverseStack();   
 
     public void pushAtBottom(Object data);
 //---------------------------------------------------------------------------
@@ -214,11 +214,12 @@ public class stack_01 {
         fruits.push(934.234);
         // fruits.copyStack(fruit2);
         // System.out.println("stack one");
+        // fruits.traverseStack();
         fruits.reverseStack();
+        fruits.traverseStack();
         // fruits.pushAtBottom("kelash ");
         // fruits.pushAtBottom("kumar");
         // fruits.pushAtBottom("Bheel");
-        fruits.traverseStack();
         // System.out.println("stack two");
         // fruit2.traverseStack();
         // fruits.replace_BottomWithTop();
