@@ -197,7 +197,7 @@ public class ArrayBasicOperatoin {
         return -1;
     }
 
-    public int binarySearchArray(int[] array, int target) {
+    public static int binarySearchArray(int[] array, int target) {
         int startposition = 0;
         int lastposition = array.length - 1;
         while (startposition <= lastposition) {
@@ -215,7 +215,7 @@ public class ArrayBasicOperatoin {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 12, 89, 19, 6, 54, 32, 23, 45, 65, 87, 343 };
+        int[] arr = { 1,15,33,42,43,45,67,77,73,75,89,95 };
         System.out.println("The original array is given below ");
         traverseArray(arr);
         System.out.println("After implementing some method of array the new array is  given below ");
@@ -225,13 +225,14 @@ public class ArrayBasicOperatoin {
         // arr = addAtMiddle(arr, 1500);
         // arr=addAtIndex(arr, 8, 1300);
         // traverseArray(arr);
-
+System.out.println(binarySearchArray(arr, 95));
+System.out.println(binarySearchArray(arr, 47));
         // ---> Delete methods:
         // arr = deleteAtFirst(arr);f
         // arr = deleteAtlast(arr);
-        arr = deleteAtIndex(arr, 4);
+        // arr = deleteAtIndex(arr, 4);
         // arr = deleteAtMiddle(arr);
-        traverseArray(arr);
+        // traverseArray(arr);
         // arr = reverseArray(arr);
         // traverseArray(arr);
         // System.out.println(MaxInArray(arr));
