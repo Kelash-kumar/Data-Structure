@@ -21,29 +21,6 @@ interface stack {
 
     public Object peek();
 
-    // ------------------------------------------------------------------------
-    public boolean arrayStackEqual(ArrayStack s);
-
-    public void ToString();
-
-    public void deleteBottomElement();
-
-    public void replace_BottomWithTop();
-
-    public void traverseStack();
-
-    public void copyStackAsReverse(stack fruit2);
-
-    public ArrayStack reverseStack();
-
-    public void pushAtBottom(Object data);
-
-    public void copyasSameStack(ArrayStack a);
-
-    public ArrayStack mergeStack(ArrayStack stack1, ArrayStack stack2);
-
-    public Object getMiddleElement();
-    // ---------------------------------------------------------------------------
 }
 
 class ArrayStack implements stack {
@@ -58,14 +35,12 @@ class ArrayStack implements stack {
         return (size == 0);
     }
 
-    @Override
     public void push(Object obj) {
         if (size == array.length)
             resize();
         array[size++] = obj;
     }
 
-    @Override
     public Object pop() {
         if (size == 0)
             throw new IllegalStateException();
@@ -73,7 +48,6 @@ class ArrayStack implements stack {
         return array[--size];
     }
 
-    @Override
     public Object peek() {
         if (size == 0)
             throw new IllegalStateException();
@@ -81,7 +55,6 @@ class ArrayStack implements stack {
         return array[size - 1];
     }
 
-    @Override
     public int size() {
         return size;
     }
@@ -94,13 +67,12 @@ class ArrayStack implements stack {
 
     // comparing the two equal stack:
     public boolean arrayStackEqual(ArrayStack stackList) {
-        if(this.size!=stackList.size)return false;
+        if (this.size != stackList.size)
+            return false;
         if (this.size() == stackList.size())
             for (int i = 0; i < size(); i++)
                 if (!(this.array[i].equals(stackList.array[i])))
                     return false;
-    
-                  
 
         return true;
     }
@@ -127,7 +99,7 @@ class ArrayStack implements stack {
         array = new Object[newarr.length - 1];
         array[0] = null;
         System.arraycopy(newarr, 1, array, 0, --size);
-      
+
     }
 
     public void replace_BottomWithTop() {
@@ -141,9 +113,9 @@ class ArrayStack implements stack {
     public void traverseStack() {
         if (isEmpty())
             System.out.println("stack is underfellow");
-
-        while (this.size() != 0)
-            System.out.println(this.pop());
+        for (int i = size - 1; i >= 0; i--) {
+            System.out.println(array[i]);
+        }
 
     }
 
@@ -153,7 +125,7 @@ class ArrayStack implements stack {
 
     }
 
-    public void copyasSameStack(ArrayStack stack1) {
+    public void copyAsSameStack(ArrayStack stack1) {
         stack1.array = this.array;
         stack1.size = this.size;
     }
@@ -201,26 +173,11 @@ class ArrayStack implements stack {
             return;
         }
 
-        // WAY ONE:
-        // Object temp = this.pop();
-        // this.pushAtBottom(data);
-        // this.push(temp);
-
-        // ANOTHER WAY:
-        ArrayStack s1 = new ArrayStack(this.size);
-        // while (this.size() != 0) {
-        // s1.push(this.peek());
-        // this.pop();
-        // }
-        // this.push(data);
-        // while (s1.size() != 0) {
-        // this.push(s1.peek());
-        // s1.pop();
-        // }
+        array[0] = data;
+        size++;
 
     }
 
-    @Override
     public ArrayStack mergeStack(ArrayStack stack1, ArrayStack stack2) {
         for (int i = 0; i < stack1.size; i++)
             this.push(stack1.array[i]);
@@ -229,7 +186,6 @@ class ArrayStack implements stack {
         return this;
     }
 
-    @Override
     public Object getMiddleElement() {
         int mid = size / 2;
         return array[mid - 1];
@@ -239,103 +195,63 @@ class ArrayStack implements stack {
 
 public class stack_01 {
     public static void main(String[] args) {
-        stack fruit2 = new ArrayStack(10);
+        ArrayStack fruits = new ArrayStack(10);
+        ArrayStack fruit2 = new ArrayStack(10);
+        ArrayStack fruit3 = new ArrayStack(10);
+
         fruit2.push("patoto");
         fruit2.push("carrot");
         fruit2.push("califlower");
         fruit2.push("groundnet");
         fruit2.push("Vegetables");
-        stack fruits = new ArrayStack(10);
-        stack fruit = new ArrayStack(10);
+
         fruits.push("Apple");
         fruits.push("Banana");
         fruits.push("Mango");
         fruits.push("Gauva");
         fruits.push("Fruits");
-     
-    //   System.out.println(fruits.arrayStackEqual((ArrayStack)fruit));
- 
-// fruits.traverseStack();
-        // fruits.push(934);
-        // fruits.push(934.234);
-        // stack3.mergeStack((ArrayStack) fruits, (ArrayStack) fruit2);
-        // stack3.traverseStack();
-        // System.out.println();
-        // fruit2.traverseStack();
-        // System.out.println();
-        // fruits.traverseStack();
-        // System.out.println();
-        // System.out.println(stack3.size());
+        // fruits.pushAtBottom("fruits end");
         // System.out.println(fruits.getMiddleElement());
-        // System.out.println(fruit2.getMiddleElement());
-        // System.out.println(fruits.peek());
-
-        // System.out.println(fruits.peek());
-        // fruits.copyStackAsReverse(fruit2);
-        // fruits.copyasSameStack((ArrayStack)fruit2);
-        // fruit2.traverseStack();
-        // System.out.println("stack one");
-        // fruits.traverseStack();
-        // fruits= fruits.reverseStack();
-        // fruits.traverseStack();
-        // fruits.pushAtBottom("kelash ");
-        // fruits.pushAtBottom("kumar");
-        // fruits.pushAtBottom("Bheel");
-        // System.out.println("stack two");
-        // fruit2.traverseStack();
-        // fruits.replace_BottomWithTop();
-        // fruits.deleteBottomElement();
-        // fruits.ToString();
-        // stack fruit =new ArrayStack(15);
-        // fruit.push("Apple");
-        // fruit.push("Banana");
-        // fruit.push("Mango");
-        // fruit.push("Gauva");
-        // fruit.push(934);
-        // fruit.push(934.234);
-        // fruit.ToString();
-        // // System.out.println("equal method "+fruits.arrayStackEqual((ArrayStack)
-        // // fruit));
-
-        // // // System.out.println(fruits.peek());
-        // // System.out.println(fruits.pop()) ;
-        // // System.out.println(fruits.peek());
-        // // System.out.println(" The size of fruits stack " + fruits.size() + " The
-        // are
-        // // given bellow .");
+        fruits.copyAsSameStack(fruit3);
+        fruit3.traverseStack();
 
     }
 }
 
-// class RPN{
-// RPN(String[] args){
-// stack Stack=new ArrayStack(args.length);
-// for(int i=0;i<args.length;i++){
-// String input=args[i];
-// if(isAnOperator(input)){
-// double x=Double.parseDouble((String)Stack.pop());
-// double y=Double.parseDouble((String)Stack.pop());
-// double z=evalute(x,y,input);
-// Stack.push(""+z);
-// }
-// else{
-// Stack.push(input);
-// }
-// }
-// }
+class RPN {
+    RPN(String[] args) {
+        stack Stack = new ArrayStack(args.length);
+        for (int i = 0; i < args.length; i++) {
+            String input = args[i];
+            if (isAnOperator(input)) {
+                double x = Double.parseDouble((String) Stack.pop());
+                double y = Double.parseDouble((String) Stack.pop());
+                double z = evalute(x, y, input);
+                Stack.push("" + z);
+            } else {
+                Stack.push(input);
+            }
+        }
+    }
 
-// private boolean isAnOperator(String s){
-// return (s.length()==1 && "ASMD".indexOf(s)>=0);
-// }
-// private double evalute(double x, double y, String op){
-// double z=0;
-// if(op.equals("A"))z=x+y;
-// else if(op.equals("S"))z=x-y;
-// else if(op.equals("S"))z=x*y;
-// else z=x-y;
-// System.out.println(x+" "+op+" "+y+" = "+z);
-// return z;
-// }
+    private boolean isAnOperator(String s) {
+        return (s.length() == 1 && "ASMD".indexOf(s) >= 0);
+    }
+
+    private double evalute(double x, double y, String op) {
+        double z = 0;
+        if (op.equals("A"))
+            z = x + y;
+        else if (op.equals("S"))
+            z = x - y;
+        else if (op.equals("S"))
+            z = x * y;
+        else
+            z = x - y;
+        System.out.println(x + " " + op + " " + y + " = " + z);
+        return z;
+    }
+}
 // public static void main(String[] args) {
 // new RPN(args);
 // }
