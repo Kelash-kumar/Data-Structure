@@ -191,7 +191,7 @@ class ArrayStack implements stack {
 
 }
 
-public class stack_01 {
+public class Array_Stack {
     public static void main(String[] args) {
         ArrayStack fruits = new ArrayStack(10);
         ArrayStack fruit2 = new ArrayStack(10);
