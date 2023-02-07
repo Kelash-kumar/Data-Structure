@@ -1,4 +1,3 @@
-package Linked_List;
 
 class LL {
     static node head;

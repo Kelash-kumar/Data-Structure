@@ -1,4 +1,3 @@
-package Linked_List;
 
 public class doublyLinkedList {
     Node head, tail = null;
