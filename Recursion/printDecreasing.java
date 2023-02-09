@@ -1,7 +1,5 @@
 package Recursion;
 
-import javax.swing.text.rtf.RTFEditorKit;
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 public class printDecreasing {
 
