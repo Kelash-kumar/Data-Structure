@@ -146,6 +146,21 @@ public class LinkedStack implements stack {
         top = prev;
         return top;
     }
+    //some more methods:
+    public Object removeBottomElement(){
+if(size()==0) throw new NullPointerException();
+
+
+this.reverseLinkedStack();
+    Object bottomElement=top.data;
+this.top=top.next;
+this.reverseLinkedStack();
+
+
+return bottomElement;
+
+
+    }
 
     public static void main(String[] args) {
         ArrayStack as = new ArrayStack(10);
@@ -156,9 +171,10 @@ public class LinkedStack implements stack {
         ls.push("mango");
         ls.push("grapes");
         ls.push("watermelon");
-        as = ls.toArrayStack();
+        // as = ls.toArrayStack();
 // ls.replace_BottomWithTop();
-ls.pushAtBottom("i am at bottom ");
+ls.removeBottomElement();
+// ls.pushAtBottom("i am at bottom ");
 
         // ls.reverseLinkedStack();
         ls.printLinkedStack();
