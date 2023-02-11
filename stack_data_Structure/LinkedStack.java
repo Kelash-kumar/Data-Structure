@@ -173,7 +173,7 @@ return bottomElement;
         ls.push("watermelon");
         // as = ls.toArrayStack();
 // ls.replace_BottomWithTop();
-ls.removeBottomElement();
+// ls.removeBottomElement();
 // ls.pushAtBottom("i am at bottom ");
 
         // ls.reverseLinkedStack();

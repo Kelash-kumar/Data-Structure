@@ -14,9 +14,9 @@ public class doublyLinkedList {
         }
 
         Node(Node prev, int data, Node next) {
+            this.prev = prev;
             this.data = data;
             this.next = next;
-            this.prev = prev;
         }
 
     }
@@ -46,9 +46,9 @@ public class doublyLinkedList {
         }
 
         Node temp = head;
-        while (temp.next != null) {
+        while (temp.next != null) 
             temp = temp.next;
-        }
+        
         // temp.next=new Node(temp.prev, data, temp.next);
         temp.next = newnode;
         newnode.prev = temp;

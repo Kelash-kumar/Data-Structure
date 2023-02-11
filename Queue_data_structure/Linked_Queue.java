@@ -9,15 +9,16 @@ interface Queue{
   }
 
   class LinkedQueue implements Queue{
-      Node head;
-    int size;
+     private Node head=new Node(null);
+   private int size;
     
     private  class Node{
         Object objects;
-        Node next;
-        Node prev;
-        Node(Object onObjects){
-          this.objects=onObjects;
+        Node next=this;
+        Node prev=this;
+
+        Node(Object Objects){
+          this.objects=Objects;
         }
 
         Node(Object obj,Node prev,Node next){
@@ -31,7 +32,8 @@ interface Queue{
 
     @Override
     public void push(Object obj) {
-    head.prev= head.prev.next=new Node(obj);
+
+    head.prev= head.prev.next=new Node(obj,head.prev,head);
     size++;
     
     }
@@ -41,33 +43,130 @@ interface Queue{
         if(isEmpty())throw new NullPointerException();
 
 
-        Object first=head.prev;
-        head=head.prev.next;
-        head.prev=head.prev.next.next;
+        Object first=head.next.objects;
+      head.next=head.next.next;
+      head.next.prev=head;
 
-        size--;
-        return null;
+        --size;
+        return first;
     }
 
 
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public Object first() {
-        return null;
+        return head.next.objects;
     }
 
     private boolean isEmpty(){return size==0;}
+    
+    
+  ///----------some extra methods:
+
+public void print_Queue(){
+  if(isEmpty()) throw new NullPointerException();
+
+  Node temp=head.next;
+  while(temp!=null)
+  {
+    if(temp.objects==null)return;
+    System.out.print(temp.objects+" -> ");
+    temp=temp.next;
+    
   }
- 
   
+}
+
+public Object[] toArray(){
+  Object[] array=new Object[this.size];
+  Node temp=head.next;
+int count=0;
+while(temp!=null)
+{
+  if(temp.objects==null)return array;
+  array[count++]=temp.objects;
+  temp=temp.next;
+}
+
+return array;
+
+  }
   
+  //equal method:
+public boolean equal_LinkedQueue(LinkedQueue lq1){
+  
+  if(this.size==lq1.size){
+    Node temp=this.head.next;
+    Node p=lq1.head.next;
+    while(temp!=null)
+    {
+      
+      if(!(temp.objects.equals(p.objects)))return false;
+      temp=temp.next;
+      p=p.next;
+      if(temp.objects==null)return true;
+      
+    }
+    
+  }
+  return true;
+}
+
+
+public LinkedQueue reverse_LinkedQueue() {
+  Node prev = null;
+  Node current = head;
+  Node next = null;
+  while (current != null) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+  }
+
+return this;
+}
+
+public LinkedQueue LinkedQueue_clone(LinkedQueue lq){
+
+lq.head=this.head;
+lq.size=this.size;
+
+
+return this;
+}
+
+  }
 public class Linked_Queue {
-    public static void main(String[] args) {
-        
+  public static void main(String[] args) {
+        LinkedQueue lq=new LinkedQueue();
+        LinkedQueue lq1=new LinkedQueue();
+        LinkedQueue lq2=new LinkedQueue();
+        lq.push("karachi");//1    //top->karahi -> chana->
+        lq.push("umerkot");//2
+        lq.push("chachro");//3
+
+        lq2.LinkedQueue_clone(lq);
+        lq2.print_Queue();
+        // lq.print_Queue();
+        // System.out.println("\n");
+        // lq.reverse_LinkedQueue();
+        // lq.print_Queue();
+
+        // lq1.push("karachi");
+        // lq1.push("umerkot");
+        // lq1.push("chachro");
+        // System.out.println(lq.equal_LinkedQueue(lq1));
+        // Object[] arr=lq.toArray();
+        // for(Object i:arr)System.out.println(i);
+
+//    System.out.println(lq.remove());
+//    System.out.println(lq.remove());
+//    System.out.println(lq.remove());
     }
 }
