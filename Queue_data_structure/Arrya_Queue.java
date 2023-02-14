@@ -77,11 +77,11 @@ public class Arrya_Queue {
          aq.push("kelash");
          aq.push("Devraj");
          aq.push("Vijay");
-        //  System.out.println(aq.first());
-        //  System.out.println(aq.remove());
-        //  System.out.println(aq.remove());
-        //  System.out.println(aq.remove());
-        //  aq.print_ArrayQueue();
+         System.out.println(aq.first());
+         System.out.println(aq.remove());
+         System.out.println(aq.remove());
+         System.out.println(aq.remove());
+         aq.print_ArrayQueue();
       
     }
 }
