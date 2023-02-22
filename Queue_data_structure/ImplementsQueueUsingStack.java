@@ -42,9 +42,9 @@ return stackobject_1.pop();
 public class ImplementsQueueUsingStack {
     public static void main(String[] args) {
         MyQueue my=new MyQueue();
-        my.push("this");
+        my.push("This");
         my.push("Queue");
-        my.push("IS");
+        my.push("is");
         my.push("stack");
         System.out.println(my.pop());
         System.out.println(my.pop());
