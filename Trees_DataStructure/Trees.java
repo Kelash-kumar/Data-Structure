@@ -4,12 +4,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Trees {
-    static int  count=0;
+    static int count = 0;
+
     static class Node {
         int data;
         Node right;
         Node left;
-        
+
         Node(int data) {
             this.data = data;
             this.right = null;
@@ -18,7 +19,7 @@ public class Trees {
     }
 
     static class BinaryTree {
-        
+
         int index = -1;
 
         public Node buildTree(int[] nodes) {
@@ -35,6 +36,7 @@ public class Trees {
             return newnode;
         }
     }
+
     public static void preOrder_Traversal(Node root) {
         // root -> left -> right
         if (root == null) {
@@ -44,7 +46,7 @@ public class Trees {
         preOrder_Traversal(root.left);
         preOrder_Traversal(root.right);
         count++;
-        
+
     }
 
     public static void postOrder_Traversal(Node root) {
@@ -107,6 +109,50 @@ public class Trees {
         return leftSubTree + rightSubTree + 1;
     }
 
+    public static int sumOfNodes(Node root) {
+        if (root == null)
+            return 0;
+
+        int leftSubTreeSum = sumOfNodes(root.left);
+        int rightSubTreeSum = sumOfNodes(root.right);
+        
+        return leftSubTreeSum + rightSubTreeSum + root.data;
+    }
+    public static int HeightOfTree(Node root) {
+        if (root == null)
+            return 0;
+
+        int leftSubTreeHeight = HeightOfTree(root.left);
+        int rightSubTreeHeight = HeightOfTree(root.right);
+        
+        int Height=Math.max(leftSubTreeHeight, rightSubTreeHeight)+1;
+        return Height;
+    }
+
+    // this approach rewuire O(n^2) time complexity:
+    // public static int DiameterOfTree(Node root) {
+    //     if (root == null)
+    //         return 0;
+
+    //     int leftSubTreeDiameter = DiameterOfTree(root.left);
+    //     int rightSubTreeDiameter = DiameterOfTree(root.right);
+    //     int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
+
+    //     return Math.max(diameter, Math.max(leftSubTreeDiameter, rightSubTreeDiameter));
+    // }
+    // this approach rewuire O(n) time complexity:
+    public static int DiameterOfTree(Node root) {
+        if (root == null)
+            return 0;
+
+        int leftSubTreeDiameter = DiameterOfTree(root.left);
+        int rightSubTreeDiameter = DiameterOfTree(root.right);
+        int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
+
+        return Math.max(diameter, Math.max(leftSubTreeDiameter, rightSubTreeDiameter));
+    }
+    
+
     public static void main(String[] args) {
         int[] treesNodes = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         BinaryTree tree = new BinaryTree();
@@ -121,7 +167,13 @@ public class Trees {
         System.out.println("\nLevel order travesal");
         LevelOrder_Traversal(root);
         System.out.println("total number of nodes in a tree");
-       System.out.println(CountTotalNodes(root));
-       System.out.println("count"+count);
+        System.out.println(CountTotalNodes(root));
+        System.out.println("count  " + count);
+        System.out.println("Total sum of Nodes ");
+        System.out.println(sumOfNodes(root));
+        System.out.println("Height of Tree ");
+        System.out.println(HeightOfTree(root));
+        System.out.println("Diameter of a tree ");
+        System.out.println(DiameterOfTree(root));
     }
 }
