@@ -1,6 +1,5 @@
 package Queue_data_structure;
 
-
 class ArrayQueue implements Queue {
     private Object[] array;
     private int size;
@@ -14,8 +13,10 @@ class ArrayQueue implements Queue {
     public boolean isEmpty() {
         return rare == -1;
     }
+    public boolean isFull(){
+        return size==array.length;
+    }
 
-    @Override
     public void push(Object obj) {
         if (rare == array.length) {
             System.out.println("full");
@@ -25,7 +26,6 @@ class ArrayQueue implements Queue {
         array[rare] = obj;
     }
 
-    @Override
     public Object remove() {
         if (isEmpty()) {
             System.out.println("null");
@@ -42,12 +42,10 @@ class ArrayQueue implements Queue {
         return front;
     }
 
-    @Override
     public int size() {
         return size;
     }
 
-    @Override
     public Object first() {
         if (isEmpty()) {
             System.out.println("null");
@@ -73,15 +71,68 @@ class ArrayQueue implements Queue {
 
 public class Arrya_Queue {
     public static void main(String[] args) {
-       ArrayQueue aq=new ArrayQueue(10);
+    //    ArrayQueue aq=new ArrayQueue(10);
+       myqueue aq=new myqueue(3);
          aq.push("kelash");
          aq.push("Devraj");
          aq.push("Vijay");
-        //  System.out.println(aq.first());
-         System.out.println(aq.remove());
-         System.out.println(aq.remove());
-         System.out.println(aq.remove());
-         aq.print_ArrayQueue();
+         aq.push("Vijay");
+        //  aq.push("Vijay");
+         System.out.println(aq.first());
+        //  System.out.println(aq.remove());
+        //  aq.print_ArrayQueue();
       
     }
+}
+
+// other way :
+
+class myqueue implements Queue{
+int size=0;
+int front=-1;
+int back=-1;
+Object[] QueueList;
+myqueue(int Capacity){
+    QueueList=new Object[Capacity];
+}
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size==0;
+    }
+
+    public boolean isFull() {
+        return size==QueueList.length;
+    }
+
+    public void push(Object obj) {
+if(isEmpty()){
+    front=back=0;
+    QueueList[back]=obj;
+    size++;
+    return;
+}
+if(isFull()){
+    System.out.println("The Queue is full ");
+    return;
+}
+
+QueueList[++back]=obj;
+size++;
+
+    }
+
+    public Object remove() {
+        if(isEmpty())return  null; 
+return QueueList[front++];
+    }
+
+    public Object first() {
+     if(isEmpty())return null;
+     
+        return QueueList[front];
+    }
+    
 }

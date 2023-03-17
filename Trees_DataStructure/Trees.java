@@ -45,8 +45,6 @@ public class Trees {
         System.out.print(root.data + " ");
         preOrder_Traversal(root.left);
         preOrder_Traversal(root.right);
-        count++;
-
     }
 
     public static void postOrder_Traversal(Node root) {
@@ -115,30 +113,32 @@ public class Trees {
 
         int leftSubTreeSum = sumOfNodes(root.left);
         int rightSubTreeSum = sumOfNodes(root.right);
-        
+
         return leftSubTreeSum + rightSubTreeSum + root.data;
     }
+
     public static int HeightOfTree(Node root) {
         if (root == null)
             return 0;
 
         int leftSubTreeHeight = HeightOfTree(root.left);
         int rightSubTreeHeight = HeightOfTree(root.right);
-        
-        int Height=Math.max(leftSubTreeHeight, rightSubTreeHeight)+1;
+
+        int Height = Math.max(leftSubTreeHeight, rightSubTreeHeight) + 1;
         return Height;
     }
 
     // this approach rewuire O(n^2) time complexity:
     // public static int DiameterOfTree(Node root) {
-    //     if (root == null)
-    //         return 0;
+    // if (root == null)
+    // return 0;
 
-    //     int leftSubTreeDiameter = DiameterOfTree(root.left);
-    //     int rightSubTreeDiameter = DiameterOfTree(root.right);
-    //     int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
+    // int leftSubTreeDiameter = DiameterOfTree(root.left);
+    // int rightSubTreeDiameter = DiameterOfTree(root.right);
+    // int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
 
-    //     return Math.max(diameter, Math.max(leftSubTreeDiameter, rightSubTreeDiameter));
+    // return Math.max(diameter, Math.max(leftSubTreeDiameter,
+    // rightSubTreeDiameter));
     // }
     // this approach rewuire O(n) time complexity:
     public static int DiameterOfTree(Node root) {
@@ -147,16 +147,82 @@ public class Trees {
 
         int leftSubTreeDiameter = DiameterOfTree(root.left);
         int rightSubTreeDiameter = DiameterOfTree(root.right);
-        int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
+        int diameter = HeightOfTree(root.left) + HeightOfTree(root.right) + 1;
 
         return Math.max(diameter, Math.max(leftSubTreeDiameter, rightSubTreeDiameter));
     }
-    
+
+    public static boolean isMatched(Node root, Node subroot) {
+        if (root == null && subroot == null)
+            return true;
+        if (root == null || subroot == null)
+            return false;
+
+        if (root.data == subroot.data) {
+            return isMatched(root.left, subroot.left) && isMatched(root.right, subroot.right);
+        }
+        return false;
+    }
+
+    public static boolean isSubTree(Node root, Node subroot) {
+
+        if (subroot == null)
+            return true;
+        if (root == null)
+            return false;
+        if (root.data == subroot.data) {
+            if (isMatched(root, subroot)) {
+                return true;
+            }
+        }
+
+        return isSubTree(root.left, subroot) || isSubTree(root.right, subroot);
+    }
+
+    public static int sumOfNodes_At_KthLevel(Node root, int kthLevel) {
+        if (root == null) {
+            return 0;
+        }
+        int nthlevel = 0;
+        int sum = 0;
+        Queue<Node> list = new LinkedList<>();
+        list.add(root);
+        list.add(null);
+        while (!list.isEmpty()) {
+            Node currNode = list.remove();
+            if (currNode == null) {
+                nthlevel++;
+                if (list.isEmpty()) {
+                    break;
+                } else if (nthlevel == kthLevel) {
+                    while (list.remove() != null) {
+                        sum += list.remove().data;
+                    }
+                } else {
+                    list.add(null);
+                }
+            } else {
+                if (currNode.left != null) {
+                    list.add(currNode.left);
+                }
+                if (currNode.right != null) {
+                    list.add(currNode.right);
+
+                }
+            }
+        }
+        System.out.println("sum      asdf" + sum);
+        return sum;
+    }
 
     public static void main(String[] args) {
         int[] treesNodes = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+        int[] subTreeNodes = { 1, 2, -1, -1, 3, -1, -1 };
         BinaryTree tree = new BinaryTree();
+        BinaryTree subTree = new BinaryTree();
+
         Node root = tree.buildTree(treesNodes);
+        Node subTreeRoot = subTree.buildTree(subTreeNodes);
         // System.out.println(root.data);
         System.out.println("pre order ");
         preOrder_Traversal(root);
@@ -175,5 +241,8 @@ public class Trees {
         System.out.println(HeightOfTree(root));
         System.out.println("Diameter of a tree ");
         System.out.println(DiameterOfTree(root));
+        System.out.println(" Is Subtree ");
+        System.out.println(isSubTree(root, subTreeRoot));
+        sumOfNodes_At_KthLevel(root, 2);
     }
 }

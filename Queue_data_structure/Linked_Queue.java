@@ -1,15 +1,5 @@
 package Queue_data_structure;
 
-interface Queue {
-  void push(Object obj);
-
-  Object remove();
-  int size();
-
-
-  Object first();
-}
-
 class LinkedQueue implements Queue {
   private Node head = new Node(null);
   private int size;
@@ -60,10 +50,6 @@ class LinkedQueue implements Queue {
   @Override
   public Object first() {
     return head.next.objects;
-  }
-
-  private boolean isEmpty() {
-    return size == 0;
   }
 
   /// ----------some extra methods:
@@ -134,9 +120,59 @@ class LinkedQueue implements Queue {
   }
 
   public LinkedQueue CopyLinkedQueue(LinkedQueue lqobj) {
-this.head=lqobj.head;
-this.size=lqobj.size;
+    this.head = lqobj.head;
+    this.size = lqobj.size;
     return this;
+  }
+
+  public void addAtBottom(Object data) {
+    if (isEmpty())
+      return;
+
+    // //way 01:
+
+    // Node temp=head.next;
+    // while(temp.next!=head){
+    // temp=temp.next;
+    // }
+    // temp.next= new Node(data, head.prev, head);
+
+    // way two:
+    head.prev = head.prev.next = new Node(data, head.prev, head);
+  }
+
+  public void addAtFirst_Queue(Object data) {
+    if (isEmpty())
+      return;
+
+    Node newNode = new Node(data, head, head.next);
+    head.next.prev = newNode;
+    head.next = newNode;
+
+  }
+
+  public void print_Reverse_queue() {
+    if (isEmpty())
+      throw new NullPointerException();
+
+    Node temp = head.prev;
+    while (temp != null) {
+      if (temp.objects == null)
+        return;
+      System.out.print(temp.objects + " -> ");
+      temp = temp.prev;
+
+    }
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return size == 0;
+  }
+
+  @Override
+  public boolean isFull() {
+    return false;
   }
 
 }
@@ -149,10 +185,12 @@ public class Linked_Queue {
     lq.push("karachi");// 1 //top->karahi -> chana->
     lq.push("umerkot");// 2
     lq.push("chachro");// 3
-
-    lq2.CopyLinkedQueue(lq);
-    lq2.print_Queue();
-    System.out.println(lq2.first());
+    lq.addAtBottom("i am at bottom ");
+    lq.addAtFirst_Queue("i am at first");
+    // lq2.CopyLinkedQueue(lq);
+    lq.print_Reverse_queue();
+    // lq.print_Queue();
+    // System.out.println(lq2.first());
 
     // lq2.print_Queue();
     // lq.print_Queue();

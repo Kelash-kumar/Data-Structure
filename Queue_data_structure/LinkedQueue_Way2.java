@@ -1,10 +1,4 @@
 package Queue_data_structure;
-
-public class LinkedQueue_Way2 {
-    
-}
-
-
 class LinkedListQueue {
     Node front ;
     Node rare ;
@@ -30,6 +24,7 @@ class LinkedListQueue {
         if (size == -1) {
             rare = front = newnode;
             size++;
+            return;
         }
 
         rare.next = newnode;
@@ -83,3 +78,4 @@ class LinkedListQueue {
         System.out.println(" null");
     }
 }
+
