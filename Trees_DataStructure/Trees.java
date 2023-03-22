@@ -129,6 +129,7 @@ public class Trees {
     }
 
     // this approach rewuire O(n^2) time complexity:
+    
     // public static int DiameterOfTree(Node root) {
     // if (root == null)
     // return 0;
@@ -136,11 +137,12 @@ public class Trees {
     // int leftSubTreeDiameter = DiameterOfTree(root.left);
     // int rightSubTreeDiameter = DiameterOfTree(root.right);
     // int diameter=HeightOfTree(root.left)+HeightOfTree(root.right)+1;
-
     // return Math.max(diameter, Math.max(leftSubTreeDiameter,
     // rightSubTreeDiameter));
     // }
-    // this approach rewuire O(n) time complexity:
+
+    // this approach require O(n) time complexity:
+
     public static int DiameterOfTree(Node root) {
         if (root == null)
             return 0;
@@ -211,7 +213,7 @@ public class Trees {
                 }
             }
         }
-        System.out.println("sum      asdf" + sum);
+        System.out.println("sum   " + sum);
         return sum;
     }
 

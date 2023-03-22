@@ -2,7 +2,6 @@ package Array_practices;
 
 import java.util.Scanner;
 
-import javax.sound.midi.SysexMessage;
 
 /**QUESTION:
  * Given an array, cyclically rotate the array clockwise by one. 

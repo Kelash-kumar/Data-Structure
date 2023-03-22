@@ -174,6 +174,49 @@ class LinkedQueue implements Queue {
   public boolean isFull() {
     return false;
   }
+public String toString(){
+  StringBuilder sb=new StringBuilder();
+  Node temp = head.next;
+  while (temp != null) {
+    if (temp.objects == null)
+      break;
+      sb.append(temp.objects+" ");
+    temp = temp.next;
+
+  }
+  return sb.toString();
+}
+
+public LinkedQueue mergeQueue(LinkedQueue queue2) {
+  if(queue2.isEmpty() || this.isEmpty())return this;
+
+  Node temp = queue2.head.next;
+  while (temp != null) {
+    if (temp.objects == null)
+      return this;
+      this.push(temp.objects);
+    temp = temp.next;
+
+  }
+
+  return this;
+}
+
+public Object getMiddle(){
+  int middle=this.size/2;
+  Node temp=head.next;
+  for(int i=0;i<middle;i++){
+temp=temp.next;
+  }
+  return temp.objects;
+}
+
+public void DeleteSecondElement() {
+  if(this.isEmpty())return;
+
+  head.next.next=head.next.next.next;
+  head.next.next.next.prev=head.next;
+}
 
 }
 
@@ -181,14 +224,27 @@ public class Linked_Queue {
   public static void main(String[] args) {
     LinkedQueue lq = new LinkedQueue();
     LinkedQueue lq1 = new LinkedQueue();
-    LinkedQueue lq2 = new LinkedQueue();
+    lq1.push(11);
+    lq1.push(12);
+    lq1.push(13);
+    lq1.push(14);
+    lq1.push(15);
+    lq1.push(16);
+    lq1.push(17);
+
+    // LinkedQueue lq2 = new LinkedQueue();
     lq.push("karachi");// 1 //top->karahi -> chana->
     lq.push("umerkot");// 2
     lq.push("chachro");// 3
-    lq.addAtBottom("i am at bottom ");
-    lq.addAtFirst_Queue("i am at first");
+    // lq=lq.mergeQueue(lq1);
+    lq.DeleteSecondElement();
+    lq.print_Queue();
+    // lq.addAtBottom("i am at bottom ");
+    // lq.addAtFirst_Queue("i am at first");
     // lq2.CopyLinkedQueue(lq);
-    lq.print_Reverse_queue();
+    // System.out.println(lq.toString());
+    // lq.print_Reverse_queue();
+    // System.out.println("get middle "+lq.getMiddle());
     // lq.print_Queue();
     // System.out.println(lq2.first());
 

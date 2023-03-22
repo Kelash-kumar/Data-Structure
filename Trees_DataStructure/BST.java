@@ -1,7 +1,4 @@
 package Trees_DataStructure;
-
-import Arrays_Data_Structure.deletion_operation;
-
 public class BST {
     public static class Node {
         int data;
@@ -63,7 +60,7 @@ root.right=Delete(root.right, Value);
   //case 2
   else if(root.left==null){
     return root.right;
-  }
+  } 
   else if(root.right==null){
     return root.left;
   }

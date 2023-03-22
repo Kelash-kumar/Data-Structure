@@ -1,6 +1,6 @@
 package stack_data_Structure;
 
-public class LinkedStack implements stack {
+public class LinkedStack  {
     private Node top;
     private int size;
 
