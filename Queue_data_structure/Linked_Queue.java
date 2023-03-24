@@ -174,49 +174,52 @@ class LinkedQueue implements Queue {
   public boolean isFull() {
     return false;
   }
-public String toString(){
-  StringBuilder sb=new StringBuilder();
-  Node temp = head.next;
-  while (temp != null) {
-    if (temp.objects == null)
-      break;
-      sb.append(temp.objects+" ");
-    temp = temp.next;
 
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    Node temp = head.next;
+    while (temp != null) {
+      if (temp.objects == null)
+        break;
+      sb.append(temp.objects + " ");
+      temp = temp.next;
+
+    }
+    return sb.toString();
   }
-  return sb.toString();
-}
 
-public LinkedQueue mergeQueue(LinkedQueue queue2) {
-  if(queue2.isEmpty() || this.isEmpty())return this;
-
-  Node temp = queue2.head.next;
-  while (temp != null) {
-    if (temp.objects == null)
+  public LinkedQueue mergeQueue(LinkedQueue queue2) {
+    if (queue2.isEmpty() || this.isEmpty())
       return this;
+
+    Node temp = queue2.head.next;
+    while (temp != null) {
+      if (temp.objects == null)
+        return this;
       this.push(temp.objects);
-    temp = temp.next;
+      temp = temp.next;
 
+    }
+
+    return this;
   }
 
-  return this;
-}
-
-public Object getMiddle(){
-  int middle=this.size/2;
-  Node temp=head.next;
-  for(int i=0;i<middle;i++){
-temp=temp.next;
+  public Object getMiddle() {
+    int middle = this.size / 2;
+    Node temp = head.next;
+    for (int i = 0; i < middle; i++) {
+      temp = temp.next;
+    }
+    return temp.objects;
   }
-  return temp.objects;
-}
 
-public void DeleteSecondElement() {
-  if(this.isEmpty())return;
+  public void DeleteSecondElement() {
+    if (this.isEmpty())
+      return;
 
-  head.next.next=head.next.next.next;
-  head.next.next.next.prev=head.next;
-}
+    head.next.next = head.next.next.next;
+    head.next.next.next.prev = head.next;
+  }
 
 }
 
