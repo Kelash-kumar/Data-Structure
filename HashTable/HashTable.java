@@ -170,7 +170,21 @@ public class HashTable {
 
             while (true) {
 
-              
+                System.out.println("\n Menu:");
+
+                System.out.println(" 1.  Add_into_hash(key,value)");
+
+                System.out.println(" 2.  get_from_hash(key)");
+
+                System.out.println(" 3.  Contains_in_hash(key)");
+
+                System.out.println(" 4.  Remove_from_hash(key)");
+
+                System.out.println(" 5. Show Complete Contents Of Hash List.");
+
+                System.out.println(" 6. Update_in_hash(key) ");
+
+                System.out.println(" 7. EXIT");
 
                 System.out.print("Enter your command: ");
 
